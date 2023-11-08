@@ -17,4 +17,4 @@ jobs:
           start: npm start
       - name: Run tests
         run: |
-             ..cypress/e2e/task1.cy.js
+             npx cypress run --spec ..cypress/e2e/task1.cy.js
