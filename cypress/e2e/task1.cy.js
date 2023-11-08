@@ -1,63 +1,46 @@
+import testData from "../fixtures/test_datas"
+import loginPage  from "../pages/loginPage"
 
-
-
-
-const selectors = require("../../selectors")
-const test_data = require("../../test_datas")
-//require('dotenv').config()
-
-
-describe('Test Successfull login',{
+describe('Check Successfull login',{
     retries: {
       runMode: 2,
       openMode: 2,
     }
   }, () => {
     
-    it('Test1', () => {
-
-        
-        cy.visit(test_data.base_url)
-        cy.get(selectors.username_field).type(test_data.username)
-        cy.get(selectors.password_field).type(test_data.password)
-        cy.get(selectors.login_btn).click()
-        cy.url().should('include',test_data.url_after_login)
-        cy.get(selectors.shop_cart).should('be.visible')
+    it('Should login successfully', () => {
+        cy.visit(testData.mainData.baseUrl)
+        loginPage.login(testData.loginData.username,testData.loginData.password)
+        cy.url().should('include',testData.mainData.urlAfterLogin)
+        cy.get(loginPage.elements.shopCart).should('be.visible')
     })
 })
 
-
-describe('Test Error message',{
+describe('Check Invalid message',{
     retries: {
       runMode: 2,
       openMode: 2,
     }
   }, () => {
     
-    
-    it('Test2', () => {
-        cy.visit(test_data.base_url)
-        cy.get(selectors.username_field).type(test_data.invalid_username)
-        cy.get(selectors.password_field).type(test_data.invalid_pswd)
-        cy.get(selectors.login_btn).click()
-        cy.get(selectors.login_err_msg_selector).should('have.text', test_data.login_err_msg);
+    it('Should receive invalid credentials error message', () => {
+        cy.visit(testData.mainData.baseUrl)
+        loginPage.login(testData.loginData.invalidUsername,testData.loginData.invalidPswd)
+        cy.get(loginPage.elements.loginErrMessage).should('have.text', testData.loginData.logineErrMsg);
     })
 })
 
-describe('Test Locked account',{
+describe('Check Locked account',{
     retries: {
       runMode: 2,
       openMode: 2,
     }
   }, () => {
-
-    
-    it('Test3', () => {
-        cy.visit(test_data.base_url)
-        cy.get(selectors.username_field).type(test_data.locked_username)
-        cy.get(selectors.password_field).type(test_data.password)
-        cy.get(selectors.login_btn).click()
-        cy.get(selectors.login_err_msg_selector).should('have.text', test_data.locked_account_err);
+   
+    it('Should receive locked out user error message', () => {
+        cy.visit(testData.mainData.baseUrl)
+        loginPage.login(testData.loginData.lockedUsername,testData.loginData.password)
+        cy.get(loginPage.elements.loginErrMessage).should('have.text', testData.loginData.lockedAccountErr);
     })
 })
 
