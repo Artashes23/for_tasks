@@ -1,0 +1,16 @@
+{
+  "name": "cypressautomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "any.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Artashes",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.4.0",
+    "dotenv": "^16.3.1",
+    "nvm": "^0.0.4"
+  }
+}
