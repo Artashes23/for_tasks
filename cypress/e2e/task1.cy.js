@@ -1,7 +1,6 @@
 import testData from "../fixtures/test_datas"
 import loginPage  from "../pages/loginPage"
 
-
 const viewports = [
   { width: 1200, height: 800 },  
   { width: 375, height: 667 }
