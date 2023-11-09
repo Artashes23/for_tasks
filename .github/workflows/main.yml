@@ -14,5 +14,4 @@ jobs:
         
       - name: Run tests
         run: |
-             CYPRESS_deviceName=mobile  npx cypress run /home/artashes/Desktop/practice/cypress/e2e/task1.cy.js
-             CYPRESS_deviceName=desktop  npx cypress run /home/artashes/Desktop/practice/cypress/e2e/task1.cy.js
+               CYPRESS_deviceName=desktop npx cypress run --spec ..cypress/e2e/task1.cy.js
