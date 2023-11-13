@@ -12,7 +12,8 @@ jobs:
         run: echo "CYPRESS_deviceName=desktop" >> $GITHUB_ENV
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        
+      - name: Set environment variable
+        run: echo "CYPRESS_deviceName=desktop" >> $GITHUB_ENV
       - name: Run tests
         run: |
              npx cypress run --spec ..cypress/e2e/task1.cy.js, CYPRESS_deviceName=desktop
