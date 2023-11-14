@@ -10,8 +10,7 @@ it('Should have h1 and "Lorem Ipsum" text', () => {
   }).as('resp').then((response) => {
     expect(response.status).to.eq(200);
     expect(response.headers['content-type']).to.include('text/html');
-    expect(response.body).include('h1')
-    expect(response.body).include("Lorem Ipsum") 
+    expect(response.body).include('<h1>Lorem Ipsum</h1>')
     //const $ = cheerio.load(response.body);
     //expect($('h1:contains("Lorem Ipsum")')).to.exist;
   });
