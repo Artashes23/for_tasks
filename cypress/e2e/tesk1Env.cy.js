@@ -15,6 +15,7 @@ describe('Check Successfull login', () => {
   });
     const username = Cypress.env('USERNAME')
     const password = Cypress.env('PASSWORD')
+    
     it('Should login successfully', () => {
         cy.visit(testData.mainData.baseUrl)
         loginPage.login(username,password)
@@ -34,4 +35,3 @@ describe('Check Successfull login', () => {
 })
     
 })
-

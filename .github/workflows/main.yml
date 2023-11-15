@@ -16,4 +16,4 @@ jobs:
         run: echo "CYPRESS_deviceName=desktop" >> $GITHUB_ENV
       - name: Run tests
         run: |
-             npx cypress run --spec ..cypress/e2e/task1.cy.js, CYPRESS_deviceName=desktop
+             CYPRESS_deviceName=desktop CYPRESS_USERNAME=standard_user CYPRESS_PASSWORD=secret_sauce  npx cypress run /home/artashes/Desktop/practice/cypress/e2e/task1.cy.js
