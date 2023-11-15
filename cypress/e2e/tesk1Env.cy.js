@@ -13,8 +13,8 @@ describe('Check Successfull login', () => {
     }
     cy.viewport(deviceName);
   });
-    const username = Cypress.env('USERNAME')
-    const password = Cypress.env('PASSWORD')
+    const username = Cypress.env('USERNAMEENV')
+    const password = Cypress.env('PASSWORDENV')
     
     it('Should login successfully', () => {
         cy.visit(testData.mainData.baseUrl)
