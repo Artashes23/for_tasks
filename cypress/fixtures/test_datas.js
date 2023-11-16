@@ -1,4 +1,4 @@
-class testData {
+class TestData {
   loginData = 
   {
     invalidUsername: 'anything',
@@ -17,4 +17,4 @@ class testData {
   }
 };
 
-module.exports = new testData
+module.exports = new TestData

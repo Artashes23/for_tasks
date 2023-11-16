@@ -1,36 +1,36 @@
-import testData from "../fixtures/test_datas"
-import loginPage  from "../pages/loginPage"
+import TestData from "../fixtures/test_datas"
+import LoginPage  from "../pages/loginPage"
 
 let deviceName = '';
 
 describe('Check Successfull login', () => { 
    
+  const username = Cypress.env('USERNAMEENV')
+  const password = Cypress.env('PASSWORDENV')
+  const userAgent = Cypress.env('USER_AGENT');
   beforeEach(() => {
-    if (Cypress.env('deviceName') === 'mobile') {
+    /*if (Cypress.env('deviceName') === 'mobile') {
       deviceName = 'iphone-8';
     } else if (Cypress.env('deviceName') === 'desktop') {
       deviceName = 'macbook-15';
-    }
-    cy.viewport(deviceName);
+    }*/
+    cy.viewport(userAgent);
+    cy.visit(TestData.mainData.baseUrl)
   });
-    const username = Cypress.env('USERNAMEENV')
-    const password = Cypress.env('PASSWORDENV')
+    
     
     it('Should login successfully', () => {
-        cy.visit(testData.mainData.baseUrl)
-        loginPage.login(username,password)
-        cy.url().should('include',testData.mainData.urlAfterLogin)
-        cy.get(loginPage.elements.shopCart).should('be.visible')
+        LoginPage.login(username,password)
+        cy.url().should('include',TestData.mainData.urlAfterLogin)
+        cy.get(LoginPage.shopCart).should('be.visible')
     })
     it('Should receive invalid credentials error message', () => {
-        cy.visit(testData.mainData.baseUrl)
-        loginPage.login(testData.loginData.invalidUsername,testData.loginData.invalidPswd)
-        cy.get(loginPage.elements.loginErrMessage).should('have.text', testData.loginData.logineErrMsg);
+        LoginPage.login(TestData.loginData.invalidUsername,TestData.loginData.invalidPswd)
+        cy.get(LoginPage.loginErrMessage).should('have.text', TestData.loginData.logineErrMsg);
   })
     it('Should receive locked out user error message', () => {
-        cy.visit(testData.mainData.baseUrl)
-        loginPage.login(testData.loginData.lockedUsername,testData.loginData.password)
-        cy.get(loginPage.elements.loginErrMessage).should('have.text', testData.loginData.lockedAccountErr);
+        LoginPage.login(TestData.loginData.lockedUsername,TestData.loginData.password)
+        cy.get(LoginPage.loginErrMessage).should('have.text', TestData.loginData.lockedAccountErr);
     
 })
     

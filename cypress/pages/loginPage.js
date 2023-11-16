@@ -1,17 +1,16 @@
-class loginPage {
-    elements = {
-        usernameField: () => cy.get('input[id = "user-name"]'),
-        passwordField: () => cy.get('input[id = "password"]'),
-        loginBtn: () => cy.get('input[id = "login-button"]'),
-        loginErrMessage: () => cy.get('h3[data-test=error]'),
-        shopCart: () => cy.get('div#shopping_cart_container')
-    }
+class LoginPage {
+    
+        usernameField = 'input#user-name'
+        passwordField = 'input#password'
+        loginBtn = 'input#login-button'
+        loginErrMessage = 'h3[data-test=error]'
+        shopCart = 'div#shopping_cart_container'
 
     login(username,password) {
-        this.elements.usernameField().type(username)
-        this.elements.passwordField().type(password)
-        this.elements.loginBtn().click()
+        cy.get(this.usernameField).type(username)
+        cy.get(this.passwordField).type(password)
+        cy.get(this.loginBtn).click()
     }
 }
 
-module.exports = new loginPage();
+module.exports = new LoginPage();
