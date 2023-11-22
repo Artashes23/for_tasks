@@ -16,4 +16,4 @@ jobs:
         run: echo "CYPRESS_deviceName=desktop" >> $GITHUB_ENV
       - name: Run tests
         run: |
-             --browser electron  --config userAgent=mobile  npx cypress run /home/artashes/Desktop/practice/cypress/e2e/task1.cy.js   --headed
+               --config userAgent=mobile  npx cypress run /home/artashes/Desktop/practice/cypress/e2e/task1.cy.js   --headed
