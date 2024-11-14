@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Install Dependencies') {
             steps {
@@ -14,8 +13,11 @@ pipeline {
         }
         stage('Run Cypress Tests') {
             steps {
+                sh 'Xvfb :99 -screen 0 1280x1024x24 &'
+                sh 'export DISPLAY=:99'
                 sh 'npx cypress run'
             }
         }
     }
 }
+
