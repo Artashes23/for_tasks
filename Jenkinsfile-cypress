@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        NO_COLOR = '1'
+    }
     stages {
         stage('Install Dependencies') {
             steps {
