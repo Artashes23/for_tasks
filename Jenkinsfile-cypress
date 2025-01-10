@@ -1,18 +1,20 @@
 pipeline {
     agent any
-
     stages {
         stage('Install Dependencies') {
             steps {
-                // Cache node_modules and Cypress cache
-                cache(path: '/var/lib/jenkins/.cache/Cypress', key: 'cypress-cache') {
-                    sh 'npm install'
+                cache(caches: ['/var/lib/jenkins/.cache/Cypress']) {
+                    script {
+                        sh 'npm install'
+                    }
                 }
             }
         }
         stage('Run Cypress Tests') {
             steps {
-                sh 'npx cypress run'
+                script {
+                    sh 'npx cypress run'
+                }
             }
         }
     }
