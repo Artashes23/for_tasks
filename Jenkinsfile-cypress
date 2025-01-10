@@ -10,17 +10,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 script {
-                    // Install npm dependencies and Cypress binary
                     sh 'npm install'
-                }
-            }
-        }
-
-        stage('Cache Cypress Binary') {
-            steps {
-                script {
-                    // Cache the Cypress binary to avoid re-downloading it
-                    stash includes: '/var/lib/jenkins/.cache/Cypress/**', name: 'cypress_cache'
                 }
             }
         }
@@ -29,7 +19,6 @@ pipeline {
             steps {
                 script {
                     // Unstash cached Cypress binary and run tests
-                    unstash 'cypress_cache'
                     sh 'npx cypress run'
                 }
             }
