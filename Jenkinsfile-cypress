@@ -1,26 +1,18 @@
 pipeline {
     agent any
 
-    environment {
-        NO_COLOR = 1
-        CYPRESS_CACHE = '/var/lib/jenkins/.cache/Cypress'
-    }
-
     stages {
-        stage('Install dependencies') {
+        stage('Install Dependencies') {
             steps {
-                script {
+                // Cache node_modules and Cypress cache
+                cache(path: '/var/lib/jenkins/.cache/Cypress', key: 'cypress-cache') {
                     sh 'npm install'
                 }
             }
         }
-
         stage('Run Cypress Tests') {
             steps {
-                script {
-                    // Unstash cached Cypress binary and run tests
-                    sh 'npx cypress run'
-                }
+                sh 'npx cypress run'
             }
         }
     }
