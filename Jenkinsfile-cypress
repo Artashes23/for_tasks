@@ -11,7 +11,12 @@ pipeline {
         }
         stage('Install Cypress') {
             steps {
-                sh 'npx cypress install'
+                script {
+                    sh '''
+                        npx cypress cache clear
+                        npx cypress install
+                    '''
+                }
             }
         }
         stage('Run Cypress Tests') {
@@ -31,4 +36,5 @@ pipeline {
         }
     }
 }
+
 
