@@ -35,11 +35,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up any unused caches (if necessary)
-            cleanWs()
-        }
-    }
 }
