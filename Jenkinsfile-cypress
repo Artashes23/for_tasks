@@ -12,9 +12,6 @@ pipeline {
                 script {
                     // Install npm dependencies and Cypress binary
                     sh 'npm install'
-                    
-                    // Install Cypress binary if not already cached
-                    sh 'npx cypress install'
                 }
             }
         }
