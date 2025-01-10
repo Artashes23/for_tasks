@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Cache the Cypress binary to avoid re-downloading it
-                    stash includes: '**/.cache/Cypress/**', name: 'cypress_cache'
+                    stash includes: '/var/lib/jenkins/.cache/Cypress/**', name: 'cypress_cache'
                 }
             }
         }
