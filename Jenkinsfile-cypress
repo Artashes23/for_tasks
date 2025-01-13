@@ -16,16 +16,19 @@ pipeline {
         }
         stage('Run Cypress Tests') {
             steps {
-                sh '''
-                # Start Xvfb
-                Xvfb :99 -screen 0 1280x1024x24 &
+                timeout(time: 30, unit: 'MINUTES') { 
+                    sh '''
+                    # Start Xvfb
+                    Xvfb :99 -screen 0 1280x1024x24 &
 
-                # Set DISPLAY environment variable
-                export DISPLAY=:99
+                    # Set DISPLAY environment variable
+                    export DISPLAY=:99
+                    sleep 5
 
-                # Run Cypress tests
-                npx cypress run
-                '''
+                    # Run Cypress tests
+                    npx cypress run
+                    '''
+                }
             }
         }
     }
