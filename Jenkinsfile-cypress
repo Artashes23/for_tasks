@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                cache(caches: ['/var/lib/jenkins/.cache/Cypress']) {
+                {
                     script {
                         sh 'npm install'
                     }
