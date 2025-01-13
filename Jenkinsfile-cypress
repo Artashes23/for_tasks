@@ -1,20 +1,31 @@
 pipeline {
     agent any
+    environment {
+        NO_COLOR = '1'
+    }
     stages {
         stage('Install Dependencies') {
             steps {
-                {
-                    script {
-                        sh 'npm install'
-                    }
-                }
+                sh 'npm install'
+            }
+        }
+        stage('Install Cypress') {
+            steps {
+                sh 'npx cypress install'
             }
         }
         stage('Run Cypress Tests') {
             steps {
-                script {
-                    sh 'npx cypress run'
-                }
+                sh '''
+                # Start Xvfb
+                Xvfb :99 -screen 0 1280x1024x24 &
+
+                # Set DISPLAY environment variable
+                export DISPLAY=:99
+
+                # Run Cypress tests
+                npx cypress run
+                '''
             }
         }
     }
