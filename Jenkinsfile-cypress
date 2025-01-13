@@ -26,7 +26,7 @@ pipeline {
                     sleep 5
 
                     # Run Cypress tests
-                    npx cypress run --browser chrome --headless
+                    npx cypress run  --headless
                     '''
                 }
             }
